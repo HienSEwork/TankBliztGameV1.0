@@ -1,5 +1,9 @@
 {
   "cleanUrls": true,
+  "redirects": [
+    { "source": "/UI.html", "destination": "/", "permanent": true },
+    { "source": "/MainControlGame.html", "destination": "/game.html", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/assets/(.*)",
@@ -8,7 +12,7 @@
       ]
     },
     {
-      "source": "/js/(.*)",
+      "source": "/assets/js/(.*)",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
       ]
