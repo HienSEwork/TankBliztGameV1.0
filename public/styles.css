@@ -1,0 +1,183 @@
+body,html {
+  margin:0;
+  padding:0;
+  height:100%;
+  background:#101014;
+  color:#fff;
+  font-family:system-ui,Arial,sans-serif;
+}
+
+/* Wrap gameplay */
+.wrap {
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:24px;              /* khoảng cách canvas và menu */
+  height:100vh;
+}
+
+/* Canvas gameplay */
+canvas {
+  background:#222;
+  border-radius:12px;
+  box-shadow:0 8px 24px rgba(0,0,0,.5);
+}
+
+/* Overlay */
+#overlay {
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(180deg,rgba(0,0,0,.85),rgba(0,0,0,.65));
+  gap:16px;
+  text-align:center;
+  padding:16px;
+}
+#overlay h2 {
+  font-size:36px;
+  font-weight:900;
+  text-shadow:0 2px 12px #000;
+}
+.btn {
+  padding:10px 18px;
+  font-size:18px;
+  border-radius:10px;
+  border:1px solid #444;
+  background:#2d2f3a;
+  color:#fff;
+  box-shadow:0 6px 18px rgba(0,0,0,.3);
+  cursor:pointer;
+  transition:all .2s;
+}
+.btn:hover { background:#3a3d4c; transform:translateY(-2px); }
+
+/* HUD */
+.hud {
+  position:absolute;
+  left:10px;
+  top:8px;
+  font:14px/1.2 system-ui,Arial;
+  color:#eaeaea;
+  text-shadow:0 2px 6px #000;
+}
+.hud .row { margin-bottom:4px; }
+.hud .buff { color:#ffd166; }
+
+/* Enemy stack */
+.enemyStack {
+  position:absolute;
+  right:10px;
+  top:8px;
+  display:grid;
+  grid-template-columns:repeat(2,12px);
+  gap:6px 10px;
+}
+.enemyDot {
+  width:10px;
+  height:10px;
+  background:#ff4949;
+  box-shadow:0 0 0 2px rgba(0,0,0,.5);
+}
+
+/* Boss bar */
+#bossBarWrap {
+  position:absolute;
+  left:50%;
+  top:10px;
+  transform:translateX(-50%);
+  width:60%;
+  height:12px;
+  border:1px solid #444;
+  background:rgba(0,0,0,.35);
+  border-radius:6px;
+  display:none;
+}
+#bossBar {
+  height:100%;
+  width:100%;
+  background:linear-gradient(90deg,#ff3b3b,#ff8b3b);
+  border-radius:6px;
+}
+
+/* UI Buttons bên cạnh canvas */
+.ui-buttons {
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.ui-buttons button {
+  padding:10px 16px;
+  font-size:16px;
+  border-radius:8px;
+  border:none;
+  background:#2d3748;
+  color:#fff;
+  cursor:pointer;
+  box-shadow:0 4px 12px rgba(0,0,0,.4);
+  transition:all .2s;
+}
+.ui-buttons button:hover {
+  background:#4a5568;
+  transform:translateY(-2px);
+}
+/* Menu UI chính */
+.menu {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  height:100vh;
+  gap:24px;
+  background: radial-gradient(circle at top, #1a1a1f, #0c0c0f 80%);
+}
+
+.menu h1 {
+  font-size:48px;
+  margin:0;
+  font-weight:900;
+  color:#ffd166;
+  text-shadow:0 0 10px #ff3b3b, 0 0 20px #ff8b3b;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.menu h1::before {
+  content:"🚀";
+}
+
+.menu p {
+  font-size:20px;
+  color:#ccc;
+  margin:0;
+}
+
+.stages {
+  display:flex;
+  gap:12px;
+}
+
+.stages button {
+  padding:12px 24px;
+  font-size:18px;
+  border-radius:10px;
+  border:2px solid #444;
+  background:#2d2f3a;
+  color:#fff;
+  cursor:pointer;
+  transition:all .2s;
+  box-shadow:0 4px 12px rgba(0,0,0,.4);
+}
+.stages button:hover:not(:disabled) {
+  background:#3a3d4c;
+  transform:translateY(-3px) scale(1.05);
+  border-color:#ffd166;
+  color:#ffd166;
+}
+.stages button:disabled {
+  opacity:0.4;
+  cursor:not-allowed;
+}
