@@ -1420,7 +1420,7 @@ TB.Game = (function () {
       fromBoss ? "YOU DEFEATED THE BOSS!" : "YOU WIN!",
       "Menu",
       () => {
-        location.href = "UI.html";
+        location.href = "/";
       }
     );
     playSound("win");
@@ -1428,7 +1428,7 @@ TB.Game = (function () {
   function gameOver() {
     state.running = false;
     showOverlay("GAME OVER", "Menu", () => {
-      location.href = "UI.html";
+      location.href = "/";
     });
     playSound("gameover");
   }
