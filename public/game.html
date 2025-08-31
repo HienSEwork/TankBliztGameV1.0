@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <title>Tank Blitz — Game</title>
-  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="wrap" id="wrap">
@@ -23,23 +23,23 @@
   <div id="bossBarWrap"><div id="bossBar"></div></div>
   <div class="enemyStack" id="enemyStack"></div>
 </div>
-<script src="/assets/js/assets.js"></script>
-<script src="/assets/js/game.js"></script>
+<script src="assets/js/assets.js"></script>
+<script src="assets/js/game.js"></script>
 <script>
   TB.Assets.loadSprites({
-    player: "/assets/player_tank.png",
-    enemy: "/assets/enemy_tank.png",
-    boss: "/assets/boss_tank.png",
-    sharkBoss: "/assets/shark_boss.png",   // shark boss
-    bullet: "/assets/bullet.png",
-    bossBullet: "/assets/bossBullet.png",
-    sharkBullet: "/assets/shark_bullet.png",   // 👈 thêm dòng này
+    player: "assets/player_tank.png",
+    enemy: "assets/enemy_tank.png",
+    boss: "assets/boss_tank.png",
+    sharkBoss: "assets/shark_boss.png",   // shark boss
+    bullet: "assets/bullet.png",
+    bossBullet: "assets/bossBullet.png",
+    sharkBullet: "assets/shark_bullet.png",   // 👈 thêm dòng này
     tiles: {
-      brick: "/assets/brick.png",
-      steel: "/assets/steel.png",
-      bush: "/assets/bush.png",
-      water: "/assets/water.png",
-      base: "/assets/base.png"
+      brick: "assets/brick.png",
+      steel: "assets/steel.png",
+      bush: "assets/bush.png",
+      water: "assets/water.png",
+      base: "assets/base.png"
     }
   })
   .then(() => TB.Assets.setUseImages(true))
@@ -52,13 +52,13 @@
 
   function confirmMenu(){
     if(confirm("Bạn có chắc chắn muốn quay về Menu chính?")){
-      location.href = "/";
+  location.href = "index.html";
     }
   }
 </script>
 <script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js');
+    if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js');
   }
 </script>
 </body>

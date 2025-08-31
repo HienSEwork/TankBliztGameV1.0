@@ -106,16 +106,16 @@ TB.Game = (function () {
 
   function loadSounds() {
     const list = {
-      shot: "/assets/sound/shot.mp3",
-      killenemy: "/assets/sound/killenemy.mp3",
-      killed: "/assets/sound/killed.mp3",
-      buffdame: "/assets/sound/buffdame.mp3",
-      plusheart: "/assets/sound/plusheart.mp3",
-      timestop: "/assets/sound/timestop.mp3",
-      startgame: "/assets/sound/startgame.mp3",
-      gameover: "/assets/sound/gameover.mp3",
-      win: "/assets/sound/win.mp3",
-      result: "/assets/sound/result.mp3",
+  shot: "assets/sound/shot.mp3",
+  killenemy: "assets/sound/killenemy.mp3",
+  killed: "assets/sound/killed.mp3",
+  buffdame: "assets/sound/buffdame.mp3",
+  plusheart: "assets/sound/plusheart.mp3",
+  timestop: "assets/sound/timestop.mp3",
+  startgame: "assets/sound/startgame.mp3",
+  gameover: "assets/sound/gameover.mp3",
+  win: "assets/sound/win.mp3",
+  result: "assets/sound/result.mp3",
     };
 
     for (const [key, path] of Object.entries(list)) {
@@ -1420,7 +1420,7 @@ TB.Game = (function () {
       fromBoss ? "YOU DEFEATED THE BOSS!" : "YOU WIN!",
       "Menu",
       () => {
-        location.href = "/";
+  location.href = "index.html";
       }
     );
     playSound("win");
@@ -1428,7 +1428,7 @@ TB.Game = (function () {
   function gameOver() {
     state.running = false;
     showOverlay("GAME OVER", "Menu", () => {
-      location.href = "/";
+    location.href = "index.html";
     });
     playSound("gameover");
   }
@@ -1473,5 +1473,9 @@ TB.Game = (function () {
   }
 
   // expose
-  return { initMenu, startLevel, togglePause, toggleSound };
+  const exposed = { initMenu, startLevel, togglePause, toggleSound };
+  // provide to both module and global TB.Game for HTML inline handlers
+  window.TB = window.TB || {};
+  window.TB.Game = exposed;
+  return exposed;
 })();

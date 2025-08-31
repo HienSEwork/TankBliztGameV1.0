@@ -2,24 +2,27 @@
 <html lang="vi">
 <head>
   <meta charset="utf-8"/>
-  <title>Tank Blitz - Menu</title>
-  <link rel="stylesheet" href="/styles.css">
+  <title>🚀 Tank Blitz</title>
+  <link rel="stylesheet" href="styles.css">
+    <!-- Mã AdSense xác minh -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-984641733456812"
+          crossorigin="anonymous"></script>
 </head>
 <body>
   <div class="menu">
     <h1>🚀 Tank Blitz</h1>
     <p>Chọn Stage để bắt đầu:</p>
     <div class="stages">
-      <button onclick="location.href='/game.html?stage=1'">Stage 1</button>
-      <button onclick="location.href='/game.html?stage=2'">Stage 2(Boss)</button>
+  <button onclick="location.href='game.html?stage=1'">Stage 1</button>
+  <button onclick="location.href='game.html?stage=2'">Stage 2 (Boss)</button>
       <button disabled>Stage 3</button>
       <button disabled>Stage 4</button>
-      <button onclick="location.href='/game.html?stage=5'">Stage 5(Boss)</button>
+  <button onclick="location.href='game.html?stage=5'">Stage 5 (Boss)</button>
     </div>
   </div>
   <script>
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js');
+      navigator.serviceWorker.register('sw.js');
     }
   </script>
 </body>
