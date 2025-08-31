@@ -21,13 +21,44 @@
     function bindButton(sel, name){
       const el = document.querySelector(sel);
       if(!el) return;
-      el.addEventListener('touchstart', (e)=>{ e.preventDefault(); press(name); }, {passive:false});
-      el.addEventListener('mousedown', (e)=>{ e.preventDefault(); press(name); });
-      const end = (e)=>{ e.preventDefault(); release(name); };
-      el.addEventListener('touchend', end, {passive:false});
-      el.addEventListener('touchcancel', end, {passive:false});
-      el.addEventListener('mouseup', end);
-      el.addEventListener('mouseleave', end);
+
+      let activePointer = null;
+
+      const onPointerDown = (ev) => {
+        // only react to primary pointers or new touches
+        if (activePointer !== null && ev.pointerId !== activePointer) {
+          // allow multi-touch across different buttons
+        }
+        ev.preventDefault && ev.preventDefault();
+        el.setPointerCapture && el.setPointerCapture(ev.pointerId);
+        activePointer = ev.pointerId;
+        el.classList.add('active');
+        press(name);
+      };
+
+      const onPointerUp = (ev) => {
+        if (activePointer !== null && ev.pointerId !== activePointer) return;
+        ev.preventDefault && ev.preventDefault();
+        try { el.releasePointerCapture && el.releasePointerCapture(ev.pointerId); } catch(e){}
+        activePointer = null;
+        el.classList.remove('active');
+        release(name);
+      };
+
+      if (window.PointerEvent) {
+        el.addEventListener('pointerdown', onPointerDown, {passive:false});
+        el.addEventListener('pointerup', onPointerUp);
+        el.addEventListener('pointercancel', onPointerUp);
+        el.addEventListener('pointerleave', onPointerUp);
+      } else {
+        // fallback to touch/mouse
+        el.addEventListener('touchstart', (e)=>{ e.preventDefault(); el.classList.add('active'); press(name); }, {passive:false});
+        el.addEventListener('touchend', (e)=>{ e.preventDefault(); el.classList.remove('active'); release(name); }, {passive:false});
+        el.addEventListener('touchcancel', (e)=>{ e.preventDefault(); el.classList.remove('active'); release(name); }, {passive:false});
+        el.addEventListener('mousedown', (e)=>{ e.preventDefault(); el.classList.add('active'); press(name); });
+        el.addEventListener('mouseup', (e)=>{ e.preventDefault(); el.classList.remove('active'); release(name); });
+        el.addEventListener('mouseleave', (e)=>{ e.preventDefault(); el.classList.remove('active'); release(name); });
+      }
     }
 
     // D-pad mapping

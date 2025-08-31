@@ -23,9 +23,10 @@ canvas { width: 100% !important; height: auto !important; max-width: 960px; }
   position: fixed;
   left: 0;
   right: 0;
-  bottom: 8px;
+  bottom: 28px; /* raise controls a bit from bottom */
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
   padding: 8px 12px;
   pointer-events: none; /* enable on children */
   z-index: 9999;
@@ -44,15 +45,17 @@ canvas { width: 100% !important; height: auto !important; max-width: 960px; }
   align-items: center;
 }
 .dpad .dir {
-  width: 64px;
-  height: 64px;
-  border-radius: 12px;
-  background: rgba(0,0,0,0.5);
+  width: 56px;
+  height: 56px;
+  border-radius: 10px;
+  background: rgba(0,0,0,0.55);
   color: #fff;
-  font-size: 22px;
+  font-size: 18px;
   border: 1px solid rgba(255,255,255,0.06);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.45);
   -webkit-touch-callout: none;
+  display:flex;align-items:center;justify-content:center;
+  touch-action: none;
 }
 .dpad .up { grid-column: 1 / span 2; justify-self: center; }
 .dpad .down { grid-column: 1 / span 2; justify-self: center; }
@@ -65,32 +68,47 @@ canvas { width: 100% !important; height: auto !important; max-width: 960px; }
   align-items: flex-end;
 }
 .action {
-  width: 64px;
-  height: 64px;
-  border-radius: 12px;
+  width: 56px;
+  height: 56px;
+  border-radius: 10px;
   background: linear-gradient(180deg,#ff6b3b,#ff3b3b);
   color: #fff;
-  font-size: 22px;
+  font-size: 18px;
   border: none;
-  box-shadow: 0 8px 22px rgba(0,0,0,0.6);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.55);
   -webkit-touch-callout: none;
+  display:flex;align-items:center;justify-content:center;
+  touch-action: none;
 }
 .small-actions { display:flex; flex-direction:column; gap:8px; }
-.action.small { width:44px; height:44px; font-size:16px; background:#2d3748; }
+.action.small { width:44px; height:44px; font-size:14px; background:#2d3748; }
 
 /* Hide mobile controls on large desktop unless touch-enabled */
-@media (min-width: 900px) {
-  .mobile-controls { display: none; }
+@media (min-width: 769px) {
+  .mobile-controls { display: none !important; }
+  .mobile-only { display: none !important; }
 }
 
-/* Ensure HUD stays visible above controls */
 .hud { z-index: 10000; }
 
-/* Slight spacing to make room for header */
-body { padding-top: 0; }
+/* Reserve space at bottom so controls don't overlap canvas on mobile */
+@media (max-width: 899px) {
+  .wrap { padding-bottom: 220px; }
+}
+
+/* prevent scrolling/overscroll when interacting with controls */
+/* Apply touch-action/overscroll only on mobile to avoid breaking desktop interactions */
+@media (max-width: 768px) {
+  html, body, .wrap { touch-action: none; overscroll-behavior: contain; }
+  .mobile-controls, .mobile-controls * { touch-action: none; }
+}
 
 @media (max-width: 600px) {
   .dpad { width: 120px; height: 120px; }
-  .dpad .dir { width: 56px; height: 56px; }
-  .action { width: 56px; height: 56px; }
+  .dpad .dir { width: 52px; height: 52px; }
+  .action { width: 52px; height: 52px; }
+  .action.small { width:40px; height:40px; }
 }
+
+/* Active state for touch feedback */
+.dpad .dir.active, .action.active { transform: translateY(-2px); opacity: 0.95; box-shadow: 0 4px 12px rgba(0,0,0,0.6); }
