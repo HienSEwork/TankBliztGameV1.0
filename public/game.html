@@ -2,10 +2,14 @@
 <html lang="vi">
 <head>
   <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <title>Tank Blitz — Game</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="mobile.css">
 </head>
 <body>
+  <!-- Mobile Ad header (placeholder) -->
+  <header class="mobile-ad" id="mobileAd" aria-hidden="true"></header>
 <div class="wrap" id="wrap">
   <canvas id="game" width="640" height="640"></canvas>
   <div id="overlay"></div>
@@ -14,7 +18,7 @@
     <div class="row"><span>Enemies:</span><span id="left">25</span></div>
     <div class="row buff" id="buffInfo"></div>
   </div>
-  <div class="ui-buttons">
+  <div class="ui-buttons desktop-only">
     <button onclick="TB.Game.togglePause()">⏸ Pause</button>
     <button onclick="confirmMenu()">🏠 Menu</button>
     <button onclick="TB.Game.toggleSound()">🔊 Sound</button>
@@ -23,8 +27,26 @@
   <div id="bossBarWrap"><div id="bossBar"></div></div>
   <div class="enemyStack" id="enemyStack"></div>
 </div>
+<!-- Mobile controls (touch) -->
+<div id="mobileControls" class="mobile-controls mobile-only" aria-hidden="false">
+  <div class="dpad" id="dpad">
+    <button class="dir up" data-dir="up">▲</button>
+    <button class="dir left" data-dir="left">◀</button>
+    <button class="dir right" data-dir="right">▶</button>
+    <button class="dir down" data-dir="down">▼</button>
+  </div>
+  <div class="actions">
+    <button class="action fire" id="btnFire">🔥</button>
+    <div class="small-actions">
+      <button class="action small" id="btnPause">⏸</button>
+      <button class="action small" id="btnMenu">🏠</button>
+      <button class="action small" id="btnSound">🔊</button>
+    </div>
+  </div>
+</div>
 <script src="assets/js/assets.js"></script>
 <script src="assets/js/game.js"></script>
+<script src="mobile.css"></script>
 <script>
   TB.Assets.loadSprites({
     player: "assets/player_tank.png",
@@ -61,5 +83,6 @@
     navigator.serviceWorker.register('sw.js');
   }
 </script>
+<script src="assets/js/mobileControls.js"></script>
 </body>
 </html>

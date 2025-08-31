@@ -181,3 +181,21 @@ canvas {
   opacity:0.4;
   cursor:not-allowed;
 }
+
+/* Control visibility helpers */
+.desktop-only { display: block; }
+.mobile-only { display: none; }
+
+/* Hide mobile controls on large desktop, show desktop UI
+   On small screens (mobile) we hide desktop UI and show mobile controls */
+@media (min-width: 900px) {
+  .mobile-controls { display: none; }
+  .mobile-only { display: none; }
+  .desktop-only { display: block; }
+}
+
+@media (max-width: 899px) {
+  .desktop-only { display: none; }
+  .mobile-only { display: block; }
+  .mobile-controls { display: flex; }
+}

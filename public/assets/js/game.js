@@ -1473,7 +1473,27 @@ TB.Game = (function () {
   }
 
   // expose
-  const exposed = { initMenu, startLevel, togglePause, toggleSound };
+  // mobile input helpers
+  function pressControl(name) {
+    switch (name) {
+      case 'up': input.up = true; break;
+      case 'down': input.down = true; break;
+      case 'left': input.left = true; break;
+      case 'right': input.right = true; break;
+      case 'fire': input.fire = true; break;
+    }
+  }
+  function releaseControl(name) {
+    switch (name) {
+      case 'up': input.up = false; break;
+      case 'down': input.down = false; break;
+      case 'left': input.left = false; break;
+      case 'right': input.right = false; break;
+      case 'fire': input.fire = false; break;
+    }
+  }
+
+  const exposed = { initMenu, startLevel, togglePause, toggleSound, pressControl, releaseControl };
   // provide to both module and global TB.Game for HTML inline handlers
   window.TB = window.TB || {};
   window.TB.Game = exposed;
